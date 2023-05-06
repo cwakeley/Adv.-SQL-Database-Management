@@ -1,5 +1,6 @@
 /*
-Create a trigger that will sync orders table with the order_items table each time a new order is created.
+
+Set up automation so anytime order_items records new data the orders table will be updated as well
 
 */
 
