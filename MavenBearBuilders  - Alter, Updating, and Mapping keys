@@ -1,0 +1,34 @@
+/* Company is creating an additional product 'The Forever Love Bear' and 'The Original Mr. Fuzzy'.
+Request is made to create a products table and track when products are launched. 
+Create a table with product_id, time created, and product name. */
+
+INSERT INTO product VALUES 
+  (1, '2012-03-19 09:00:00', 'The Original Mr. Fuzzy'),
+  (2, '2013-01-06 13:00:00', 'The Forever Love Bear');
+
+/* Multiple products will be added and sold. Request is to tie order_items data to products sold.
+Add product_id to order_item table. Set all orders items to show the product 'Original Mr. Fuzzy' being sold. */
+
+ALTER TABLE order_items 
+ADD product_id BIGINT;
+
+UPDATE order_items 
+SET product_id = 1
+WHERE order_item_id > 0;
+
+
+/* Add foreign key constraints to order_item table with product_id */
+
+ALTER TABLE `mavenbearbuilders`.`order_items` 
+ADD INDEX `order_item_product_id_idx` (`product_id` ASC) VISIBLE;
+;
+ALTER TABLE `mavenbearbuilders`.`order_items` 
+ADD CONSTRAINT `order_item_product_id`
+  FOREIGN KEY (`product_id`)
+  REFERENCES `mavenbearbuilders`.`products` (`product_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+  
+
+
+
